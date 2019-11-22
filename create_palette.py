@@ -8,18 +8,20 @@ from sklearn.cluster import KMeans
 #%%
 from PIL import Image
 
-img = Image.open('wes.jpg')
+filename = 'bFC.png'
+
+img = Image.open(filename)
 
 img_orig = img.copy()
 
 #%% resize for speed
-basewidth = 800
+basewidth = 100
 wpercent = (basewidth / float(img.size[0]))
 hsize = int((float(img.size[1]) * float(wpercent)))
 img = img.resize((basewidth, hsize), Image.ANTIALIAS)
 
 #%% get channels
-arr = np.array(img)
+arr = np.array(img.convert('RGB')) # need .convert('RGB') as sometimes png may not be loaded as such
 
 r = arr[:,:,0].flatten()
 g = arr[:,:,1].flatten()
@@ -28,7 +30,7 @@ b = arr[:,:,2].flatten()
 df = pd.DataFrame({'r' : list(r), 'g' : list(g), 'b' : list(b)})
 
 #%%
-n_clusters = 10
+n_clusters = 3
 
 kmeans = KMeans(n_clusters=n_clusters).fit(df)
 
@@ -110,6 +112,6 @@ new_img.paste(img_orig, coords)
 
 # %%
 #plt.imshow(new_img)
-new_img.save("output.png", "PNG")
+new_img.save("output_"+filename, "PNG")
 
 # %%
