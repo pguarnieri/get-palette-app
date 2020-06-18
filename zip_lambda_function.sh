@@ -1,6 +1,6 @@
 #!/bin/sh -x
 
-pip3 install -t ./packages requirements.txt
+pip3 install --target ./packages -r requirements.txt
 
 cd ./packages
 zip -r9 ${OLDPWD}/function.zip .
