@@ -1,0 +1,1 @@
+The Get Palette App is a simple Python package that takes an input image and creates a new one with a colour palette at the bottom.
