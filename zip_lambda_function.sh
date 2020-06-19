@@ -1,5 +1,7 @@
 #!/bin/sh -x
 
+cp -r get_palette ./packages/
+
 pip3 install --target ./packages -r requirements.txt
 
 cd ./packages
