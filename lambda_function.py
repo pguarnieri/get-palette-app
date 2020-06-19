@@ -10,15 +10,15 @@ def lambda_handler(event, context):
 
     c = gp.get_colours.kmeans(img)
 
-    new_img = gp.get_colours.create_palette_image(img, c)
+    new_img = gp.create_output.create_palette_image(img, c)
 
-    img_b64 = gp.get_colours.image2b64(new_img)
+    img_b64 = gp.create_output.image2b64(new_img)
 
     return {
         'statusCode': 200,
         'isBase64Encoded': True,
         'headers': {
-            'content-type': 'image/jpeg'
+            'content-type': 'image/png'
         },
         'body': json.dump(img_b64)
     }
