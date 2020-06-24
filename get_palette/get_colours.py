@@ -1,4 +1,3 @@
-import pandas as pd
 import numpy as np
 from PIL import Image
 from sklearn.cluster import KMeans
@@ -19,9 +18,9 @@ def make_image_df(self, img):
 	g = arr[:,:,1].flatten()
 	b = arr[:,:,2].flatten()
 
-	df = {'r' : list(r), 'g' : list(g), 'b' : list(b)}
+	rgb = np.column_stack((r,g,b)) 
 
-	return df
+	return rgb
 
 def prettify_colours(self, centroids):
 
