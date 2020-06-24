@@ -19,7 +19,7 @@ def make_image_df(self, img):
 	g = arr[:,:,1].flatten()
 	b = arr[:,:,2].flatten()
 
-	df = pd.DataFrame({'r' : list(r), 'g' : list(g), 'b' : list(b)})
+	df = {'r' : list(r), 'g' : list(g), 'b' : list(b)}
 
 	return df
 
