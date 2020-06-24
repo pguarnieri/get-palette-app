@@ -1,16 +1,16 @@
 import json
 
-import get_palette as gp
+from get_palette import get_data, get_colours, create_output
 
 def lambda_handler(event, context):
     
-    img = gp.get_data.get_image_b64(event['body'])
+    img = get_data.get_image_b64(event['body'])
 
-    c = gp.get_colours.kmeans(img)
+    c = get_colours.kmeans(img)
 
-    new_img = gp.create_output.create_palette_image(img, c)
+    new_img = create_output.create_palette_image(img, c)
 
-    img_b64 = gp.create_output.image2b64(new_img)
+    img_b64 = create_output.image2b64(new_img)
 
     return {
         'statusCode': 200,
