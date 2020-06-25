@@ -1,15 +1,15 @@
 import numpy as np
-from PIL import Image
+import PIL.Image
 from sklearn.cluster import KMeans
 import colorsys
 
-def make_image_df(self, img):
+def make_image_array(img):
 
 	# resize image to keep size relatively small and keep calculations running quickly
 	basewidth = 100
 	wpercent = (basewidth / float(img.size[0]))
 	hsize = int((float(img.size[1]) * float(wpercent)))
-	img = img.resize((basewidth, hsize), Image.ANTIALIAS)
+	img = img.resize((basewidth, hsize), PIL.Image.ANTIALIAS)
 
 	# get channels and turn colours into dataframe columns
 	arr = np.array(img.convert('RGB')) # need .convert('RGB') as sometimes png may not be loaded as such
@@ -22,7 +22,7 @@ def make_image_df(self, img):
 
 	return rgb
 
-def prettify_colours(self, centroids):
+def prettify_colours(centroids):
 
 	# for a more visually appealing palette, let's order the colours by hue
 	colours = []
@@ -39,17 +39,17 @@ def prettify_colours(self, centroids):
 	return colours
 
 
-def kmeans(self, img, n_colours=10):
+def kmeans(img, n_colours=10):
 
-	df = make_image_df(img)
+	arr = make_image_array(img=img)
 
 	# pick how many colours will populate our palette, then perform a KMeans, and finally get the centroids identifying the colours we will display
 	n_clusters = n_colours
 
-	kmeans = KMeans(n_clusters=n_clusters).fit(df)
+	kmeans = KMeans(n_clusters=n_clusters).fit(arr)
 
 	centroids = kmeans.cluster_centers_
 
-	colours = prettify_colours(centroids)
+	colours = prettify_colours(centroids=centroids)
 
 	return colours
