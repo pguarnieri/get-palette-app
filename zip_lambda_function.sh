@@ -1,8 +1,15 @@
 #!/bin/sh -x
 
-cp -r get_palette ./packages/
+cp -r get_palette ./packages
 
-pip3 install --target ./packages -r requirements/prod.txt
+# pip3 install --target ./packages -r requirements/prod.txt
+
+# rm -r ./packages/numpy
+# rm -r ./packages/sklearn
+
+unzip -o './lambda_wheels/*' -d ./packages
+
+rm -r ./packages/*.dist-info ./packages/*/__pycache__
 find ./packages -iname tests -type d -exec rm -rf {} +
 
 cd ./packages
