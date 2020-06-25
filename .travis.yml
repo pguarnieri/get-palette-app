@@ -1,0 +1,10 @@
+services:
+  - docker
+
+env:
+  - AWS_ACCESS_KEY_ID=...
+  - AWS_SECRET_ACCESS_KEY=...
+
+script:
+  - docker build -t get-palette-app .
+  - docker run --rm -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY get-palette-app
