@@ -28,7 +28,7 @@ jobs:
       run: |
         unzip -o './lambda_wheels/*' -d ./packages
 
-        rm -r ./packages/*.dist-info ./packages/*/__pycache__
+        rm -rf ./packages/*.dist-info ./packages/*/__pycache__
         find ./packages -iname tests -type d -exec rm -rf {} +
 
         cd ./packages
