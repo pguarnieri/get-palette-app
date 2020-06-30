@@ -4,6 +4,7 @@ from get_palette import get_data, get_colours, create_output
 
 def lambda_handler(event, context):
 
+    print(event['body'])
     img = get_data.get_image_b64(img_b64=event['body'])
 
     c = get_colours.kmeans(img=img)
