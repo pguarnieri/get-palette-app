@@ -1,6 +1,7 @@
 from base64 import b64decode
 from io import BytesIO
 import PIL.Image
+import PIL.ExifTags
 
 def get_image_b64(img_b64):
 	
@@ -8,8 +9,8 @@ def get_image_b64(img_b64):
 
 	# rotate image according to exif
 	try:
-	    for orientation in ExifTags.TAGS.keys():
-	        if ExifTags.TAGS[orientation]=='Orientation':
+	    for orientation in PIL.ExifTags.TAGS.keys():
+	        if PIL.ExifTags.TAGS[orientation]=='Orientation':
 	            break
 
 	    exif=dict(image._getexif().items())
