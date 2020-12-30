@@ -21,7 +21,8 @@ def lambda_handler(event, context):
         'statusCode': statusCode,
         'isBase64Encoded': True,
         'headers': {
-            'content-type': 'image/png'
+            'content-type': 'image/png',
+            'Access-Control-Allow-Origin': '*'
         },
         'body': json.dumps(img_b64)
     }
