@@ -14,6 +14,9 @@ def lambda_handler(event, context):
 
 		statusCode = 200
 
+	except:
+	    pass
+
 	return {
         'statusCode': statusCode,
         'isBase64Encoded': True,
